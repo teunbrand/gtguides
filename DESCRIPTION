@@ -12,8 +12,12 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.1
-Depends: 
-    ggplot2
+Depends:
+    ggplot2,
+    R (>= 4.1.0)
 Imports: 
+    grid,
     gt (>= 0.10.1.9000),
-    rlang (>= 1.1.0)
+    gtable,
+    rlang (>= 1.1.0),
+    vctrs
