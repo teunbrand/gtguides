@@ -15,4 +15,5 @@ RoxygenNote: 7.3.1
 Depends: 
     ggplot2
 Imports: 
-    gt (>= 0.10.1.9000)
+    gt (>= 0.10.1.9000),
+    rlang (>= 1.1.0)
