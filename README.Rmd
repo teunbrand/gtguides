@@ -1,0 +1,71 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  fig.align = "center",
+  out.width = "80%",
+  dev = "svglite",
+  dev.args = list(fix_text_size = FALSE),
+  dpi = 132
+)
+```
+
+# gtguides
+
+<!-- badges: start -->
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![CRAN status](https://www.r-pkg.org/badges/version/gtguides)](https://CRAN.R-project.org/package=gtguides)
+<!-- badges: end -->
+
+The goal of gtguides is to provide additional guides for the 'ggplot2' package representing tables constructed with the 'gt' package.
+
+## Installation
+
+> [!WARNING]
+> You'd need the development version of {gt} for this to work. You can install that by using `devtools::install_github("rstudio/gt")`.
+
+You can install the development version of gtguides from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("teunbrand/gtguides")
+```
+
+## Example
+
+The main idea is that we can format a nice table using the {gt} package:
+
+```{r table_example}
+library(gtguides)
+library(gt)
+
+# Selected observations from the msleep data
+df <- msleep[c(9, 28, 11, 5, 34, 54, 53), ]
+
+# Format a nice table of animal data
+animals <- df |>
+  subset(select = c(name, order, awake, bodywt, brainwt)) |>
+  gt(groupname_col = "order") |>
+  fmt_number(c(awake, bodywt, brainwt)) |>
+  tab_spanner("weight", c(bodywt, brainwt)) |>
+  cols_label(bodywt = "body", brainwt = "brain") |>
+  tab_style(cell_text("red"), cells_body(brainwt, 7)) |>
+  tab_header("Animals")
+animals
+```
+
+And then use such a table to display a legend:
+
+```{r ggplot_example}
+ggplot(df, aes(sleep_total, sleep_rem, colour = name)) +
+  geom_point(na.rm = TRUE) +
+  guides(colour = guide_gtlegend(animals))
+```
+
