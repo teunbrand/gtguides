@@ -71,6 +71,9 @@ And then use such a table to display a legend:
 ```{r ggplot_example}
 ggplot(df, aes(sleep_total, sleep_rem, colour = name)) +
   geom_point(na.rm = TRUE) +
-  guides(colour = guide_gtlegend(animals))
+  scale_colour_discrete(
+    limits = df$name,
+    guide  = guide_gtlegend(animals)
+  )
 ```
 
