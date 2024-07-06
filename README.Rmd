@@ -63,7 +63,7 @@ animals <- df |>
   tab_header("Animals")
 
 # Show table
-as_raw_html(animals, FALSE)
+as_raw_html(animals, TRUE)
 ```
 
 And then use such a table to display a legend:
