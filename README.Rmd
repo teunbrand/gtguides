@@ -28,12 +28,6 @@ The goal of gtguides is to provide additional guides for the 'ggplot2' package r
 
 ## Installation
 
-
-```{=html}
-> [!WARNING]
-> You'd need the development version of {gt} for this to work. You can install that by using `devtools::install_github("rstudio/gt")`.
-```
-
 You can install the development version of gtguides from [GitHub](https://github.com/) with:
 
 ``` r
